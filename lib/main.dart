@@ -1,6 +1,8 @@
 // 
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rest_api_flutter/app/routes.dart';
 import 'package:rest_api_flutter/pages/listview.dart';
 //import 'screens/rest_api_screen.dart'; // ✅ Import your separated file
 
@@ -13,14 +15,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "API + ListView Demo",
-      theme: ThemeData(primarySwatch: Colors.red),
-      home: const HomePage(),
-      routes: {
-        '/api': (context) => const RestApiScreen(), // ✅ Route added
-      },
+      // title: "API + ListView Demo",
+      // theme: ThemeData(primarySwatch: Colors.red),
+      initialRoute: '/fetchdata',
+      getPages: appRoutes(),
     );
   }
 }
@@ -38,7 +38,9 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             Navigator.pushNamed(context, '/api'); // ✅ Navigate to API screen
           },
+         
           child: const Text("Go to API Page"),
+
         ),
       ),
     );
