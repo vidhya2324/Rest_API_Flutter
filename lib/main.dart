@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // title: "API + ListView Demo",
       // theme: ThemeData(primarySwatch: Colors.red),
-      initialRoute: '/fetchdata',
+      initialRoute: '/listview',
       getPages: appRoutes(),
     );
   }

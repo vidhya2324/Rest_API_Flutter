@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 Future<Map<String, String>?> showAddUserDialog(BuildContext context) async {
   final _formKey = GlobalKey<FormState>();
@@ -29,26 +30,60 @@ Future<Map<String, String>?> showAddUserDialog(BuildContext context) async {
               children: [
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Enter the Name'),
+                  keyboardType: TextInputType.name,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')),
+                  ],
                   onSaved: (val) => name = val ?? '',
-                  validator: (val) => val!.isEmpty ? "Enter Name" : null,
+                  validator: (val) {
+                    if (val == null || val.isEmpty) return "Enter Your Name";
+                    if (!RegExp(r'[a-zA-Z\s]').hasMatch(val)) {
+                      return "Name can only contain Letters";
+                    }
+                    return null;
+                  },
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Enter the Email'),
+                  keyboardType: TextInputType.emailAddress,
+
                   onSaved: (val) => email = val ?? '',
-                  validator: (val) => val!.isEmpty ? "Enter Email" : null,
+                  validator: (val) {
+                    if (val == null || val.isEmpty) return "Enter Email";
+                    if (!RegExp(r'^[\w\.-]+@[\w\.-]+\.\w+$').hasMatch(val)) {
+                      return "Enter a valid Email";
+                    
+                    }
+                    return null;
+                  },
                 ),
                 TextFormField(
                   decoration: InputDecoration(
                     labelText: 'Enter the Phone Number',
                   ),
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(10),
+                  ],
                   onSaved: (val) => phone = val ?? '',
-                  validator: (val) =>
-                      val!.isEmpty ? "Enter Phone Number" : null,
+                  validator: (val) {
+                    if (val == null || val.isEmpty) return "Enter Phone Number";
+                    if (!RegExp(r'^\d{10}$').hasMatch(val)) {
+                      return "Enter a valid 10-digit number";
+                    }
+                    return null;
+                  },
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Enter the Logo URL'),
+                  keyboardType: TextInputType.url,
                   onSaved: (val) => logo = val ?? '',
-                  validator: (val) => val!.isEmpty ? "Enter Logo URL" : null,
+                  validator: (val) {
+                    if (val == null || val.isEmpty) return "Enter Logo URL";
+                    if (!Uri.parse(val).isAbsolute) return "Enter a valid URL";
+                    return null;
+                  },
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Enter the Rating'),
@@ -72,7 +107,7 @@ Future<Map<String, String>?> showAddUserDialog(BuildContext context) async {
                   'name': name,
                   'email': email,
                   'phonenumber': phone,
-                  'logo': logo, // ✅ lowercase
+                  'logo': logo, 
                   'rating': rating,
                 });
               }

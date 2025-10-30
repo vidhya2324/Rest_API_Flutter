@@ -82,7 +82,7 @@ class _FetchDataState extends State<FetchData> {
                         children: [
                           Container(
                             height: 150,
-                            width: 150,
+                            width: 160,
                             decoration: BoxDecoration(
                               color: Colors.black,
                               image: DecorationImage(
@@ -93,41 +93,50 @@ class _FetchDataState extends State<FetchData> {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              data[index]['name'],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                data[index]['name'],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                               ),
-                            ),
-                            Text(
-                              data[index]['email'],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
+
+                              Text(
+                                data[index]['email'],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
                               ),
-                            ),
-                            Text(
-                              data[index]['phonenumber'],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                              Text(
+                                data[index]['phonenumber'],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
-                            ),
-                            Text(
-                              data[index]['rating'],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                              Text(
+                                data[index]['rating'],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -200,7 +209,7 @@ class _FetchDataState extends State<FetchData> {
                                   color: Colors.black,
                                 ),
                               ),
-                              duration: Duration(seconds:3),
+                              duration: Duration(seconds: 3),
                               backgroundColor: Colors.redAccent,
                             ),
                           );
